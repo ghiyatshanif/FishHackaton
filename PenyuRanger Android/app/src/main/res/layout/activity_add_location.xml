@@ -1,0 +1,101 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.ghiyats.volleyexample.Fragment.ReportFragment">
+
+        <TextView
+            android:id="@+id/namaLokasiTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:paddingTop="50dp"
+            android:text="Nama Lokasi"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/namaLokasi"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:hint="Nama Lokasi"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/jenisPenyuTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:paddingTop="15dp"
+            android:text="Jenis Penyu"
+            android:textStyle="bold|italic" />
+
+        <Spinner
+            android:id="@+id/penyuChooser"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp" />
+
+
+        <TextView
+            android:id="@+id/jmlTelurText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:paddingTop="15dp"
+            android:text="Jumlah Telur"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/jmlTelur"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:hint="Jumlah telur"
+            android:inputType="number"
+            android:padding="10dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/dropBoxLinkTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:paddingTop="15dp"
+            android:text="Link Dropbox"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/dropBoxLink"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:hint="*kosongkan jika belum dibuat"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:background="@color/actionbar_color"
+            android:layout_margin="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:onClick="addLocation"
+            android:textColor="@color/primary_text_default_material_dark"
+            android:text="Tambah Lokasi" />
+
+    </LinearLayout>
+</ScrollView>

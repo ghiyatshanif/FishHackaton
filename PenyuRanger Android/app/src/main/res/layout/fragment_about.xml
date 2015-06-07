@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.ghiyats.volleyexample.Fragment.AboutFragment">
+
+
+    <TextView
+        android:id="@+id/Title"
+        android:text="#CodeForFish"
+        android:textSize="20sp"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:textStyle="bold|italic"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="190dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fishackaton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/fishackaton"
+        android:textSize="@dimen/abc_text_size_display_4_material"/>
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:text="PenyuRanger"
+        android:textSize="20sp"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/fishackaton"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Version : 0.0.1 "
+        android:textSize="17dp"
+        android:textColor="@color/input_register_hint"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/appTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+    <TextView android:text="Created by @ghiyatshanif + @satrahmadi"
+        android:textSize="10dp"
+        android:textColor="@color/input_register_hint"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

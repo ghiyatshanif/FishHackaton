@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/thumbnailCover"
+        android:layout_width="80dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="80dp"
+        android:background="@color/rank1">
+
+    <!-- Thumbnail Image-->
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:src="@drawable/ic_place_white_48dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <!-- movie-->
+    <TextView
+        android:id="@+id/locationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/thumbnailCover"
+        android:layout_toRightOf="@id/thumbnailCover"
+        android:textStyle="bold"
+        android:text="Location Name"/>
+
+    <!-- movie rating-->
+    <TextView
+        android:id="@+id/turtleCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/thumbnailCover"
+        android:layout_below="@id/locationName"
+        android:layout_marginTop="1dp"
+        android:text="Penyu Hijau"/>
+
+    <!-- movie genre-->
+    <TextView
+        android:id="@+id/butirTelur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/thumbnailCover"
+        android:layout_below="@id/turtleCategory"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/abc_secondary_text_material_light"
+        android:text="100 butir"/>
+
+    <!-- movie release-->
+    <TextView
+        android:id="@+id/dateSaved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/abc_secondary_text_material_light"
+        android:text="06/06/2014"/>
+
+</RelativeLayout>

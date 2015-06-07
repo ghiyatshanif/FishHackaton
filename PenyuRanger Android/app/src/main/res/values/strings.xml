@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Teman Nelayan</string>
+
+    <!--drawer title-->
+
+    <string name="menu_beranda">Beranda</string>
+    <string name="menu_daftar_lokasi">Lokasi Penyusuar</string>
+    <string name="menu_infografis">Infografis</string>
+    <string name="menu_akun">Akun</string>
+    <string name="menu_cuaca">Info cuaca</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add">Tambah Lokasi</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Hapus</string>
+
+    <string name="hint_id">Ranger id</string>
+    <string name="hint_password">Password</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="fishackaton">&gt;&lt;&gt;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_location">Tambah Lokasi Penyusuar</string>
+    <string name="title_activity_edit_location">EditLocation</string>
+    <string name="title_activity_detail">DetailActivity</string>
+</resources>
