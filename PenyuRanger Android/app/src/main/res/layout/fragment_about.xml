@@ -8,46 +8,47 @@
 
 
     <TextView
-        android:id="@+id/Title"
-        android:text="#CodeForFish"
-        android:textSize="20sp"
-        android:textColor="@color/secondary_text_default_material_light"
-        android:textStyle="bold|italic"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="190dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content" />
-
-    <TextView
         android:id="@+id/fishackaton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="180dp"
+        android:text="&gt;&lt;&gt; #codeforfish"
+        android:textSize="@dimen/abc_text_size_medium_material"/>
+
+    <ImageView
+        android:id="@+id/appImage"
+        android:layout_width="wrap_content"
         android:layout_centerVertical="true"
-        android:text="@string/fishackaton"
-        android:textSize="@dimen/abc_text_size_display_4_material"/>
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:src="@drawable/penyusuar_banner"/>
+
+
+
+    <TextView
+        android:id="@+id/appVersion"
+        android:text="Version : 0.1 "
+        android:textSize="17dp"
+        android:textColor="@color/input_register_hint"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/appImage"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/appTitle"
-        android:text="PenyuRanger"
+        android:text="by PenyuRanger"
         android:textSize="20sp"
         android:textColor="@color/secondary_text_default_material_light"
         android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/fishackaton"
+        android:layout_below="@id/appVersion"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:text="Version : 0.0.1 "
-        android:textSize="17dp"
-        android:textColor="@color/input_register_hint"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/appTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content" />
-
-    <TextView android:text="Created by @ghiyatshanif + @satrahmadi"
+    <TextView android:text="Crafted by @ghiyatshanif + @satrahmadi"
         android:textSize="10dp"
         android:textColor="@color/input_register_hint"
         android:textStyle="bold"

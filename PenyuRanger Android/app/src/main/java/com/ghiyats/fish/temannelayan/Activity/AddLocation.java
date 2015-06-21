@@ -1,12 +1,15 @@
 package com.ghiyats.fish.temannelayan.Activity;
 
 import android.content.Intent;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +19,10 @@ import android.widget.Toast;
 
 import com.ghiyats.fish.temannelayan.Helper.GPSManager;
 import com.ghiyats.fish.temannelayan.Helper.LocationDbHelper;
+import com.ghiyats.fish.temannelayan.Helper.RangerDbHelper;
 import com.ghiyats.fish.temannelayan.Helper.SessionManager;
+import com.ghiyats.fish.temannelayan.Model.RangerModel;
+import com.ghiyats.fish.temannelayan.Model.TurtleModel;
 import com.ghiyats.fish.temannelayan.R;
 
 import java.util.ArrayList;
@@ -32,6 +38,7 @@ public class AddLocation extends ActionBarActivity {
     GPSManager gpsManager;
     SessionManager sessionManager;
     LocationDbHelper dbHelper;
+    RangerDbHelper rangerDbHelper;
     String spinnerContent [] = {"Penyu Hijau","Penyu Belimbing","Penyu Sisik","Penyu Pipih","Penyu Lekang","Penyu Tempayan", "Penyu Kemp's Ridley"};
     @InjectView(R.id.namaLokasi) EditText namaLokasi;
     @InjectView(R.id.penyuChooser) Spinner penyuChooser;
@@ -39,6 +46,8 @@ public class AddLocation extends ActionBarActivity {
     @InjectView(R.id.dropBoxLink)EditText dropboxLink;
 
     @InjectView(R.id.btnAdd) Button btnAdd;
+    TurtleModel turtle;
+    RangerModel ranger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +55,12 @@ public class AddLocation extends ActionBarActivity {
         setContentView(R.layout.activity_add_location);
         ButterKnife.inject(this);
         gpsManager = new GPSManager(this);
+        gpsManager.buildGoogleApiClient();
+        gpsManager.getGoogleApiClient().connect();
+
         sessionManager = new SessionManager(this);
         dbHelper = new LocationDbHelper(this);
+        rangerDbHelper = new RangerDbHelper(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -57,21 +70,29 @@ public class AddLocation extends ActionBarActivity {
     }
 
     public void addLocation(View v ){
+        turtle = new TurtleModel();
+        ranger = rangerDbHelper.get(sessionManager.getUserId());
         if (!namaLokasi.getText().toString().equals("") && !jmlTelur.getText().toString().equals("")){
-            String nama = namaLokasi.getText().toString();
-            int jml= Integer.parseInt(jmlTelur.getText().toString());
-            String jenis = penyuChooser.getSelectedItem().toString();
-            String link = dropboxLink.getText().toString();
-            String savedBy = sessionManager.getUsername();
-            Date date = getCurentTime();
-            String longitude = String.valueOf(gpsManager.getCurrentLocation().getLongitude());
-            String latitude = String.valueOf(gpsManager.getCurrentLocation().getLatitude());
+            turtle.setName(namaLokasi.getText().toString());
+            turtle.setJmlTelur(Integer.parseInt(jmlTelur.getText().toString()));
+            turtle.setTurtleCategory(penyuChooser.getSelectedItem().toString());
+            turtle.setDropboxLink(dropboxLink.getText().toString());
+            turtle.setSavedBy(sessionManager.getUsername());
+            turtle.setSavedOn(getCurentTime());
+            turtle.setLongitude(String.valueOf(gpsManager.getCurrentLocation().getLongitude()));
+            turtle.setLatitude(String.valueOf(gpsManager.getCurrentLocation().getLatitude()));
+            turtle.setKonservasiInCharge(ranger.getMemberOf());
 
-            dbHelper.add(nama,jenis,jml,latitude,longitude,date,savedBy,link);
-            Toast.makeText(this,"Data telah tersimpan",Toast.LENGTH_SHORT).show();
+            dbHelper.add(turtle);
 
-            startActivity(new Intent(this,NavigationDrawer.class));
-            finish();
+            Crouton.makeText(this,"Data telah tersimpan",Style.CONFIRM).show();
+            addEvent(60,namaLokasi.getText().toString());
+            Crouton.makeText(this,"Reminder ditambahkan ke kalendar",Style.INFO).show();
+            clearForm();
+
+
+            //startActivity(new Intent(this, NavigationDrawer.class));
+            //finish();
         }
         else
             Crouton.makeText(this,"field harus terisi", Style.ALERT).show();
@@ -104,5 +125,33 @@ public class AddLocation extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void addEvent(int daysToEvent,String locations){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, daysToEvent);
+        Log.d("calendar",calendar.getTime().toString());
+        Date eventDate = calendar.getTime();
+
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setType("vnd.android.cursor.item/event");
+        intent.putExtra(Events.TITLE, "PenyuRanger Reminder");
+        intent.putExtra(Events.DESCRIPTION, "Hari ke-" + daysToEvent + " semenjak pemasangan Penyusuar " + locations + ", harap segera menyiapkan untuk penetasan semi alami");
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,eventDate.getTime());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,eventDate.getTime());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,true);
+
+        startActivity(intent);
+    }
+
+    public void clearForm(){
+        ViewGroup group = (ViewGroup)findViewById(R.id.addLocationGroup);
+        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
+            View view = group.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
     }
 }

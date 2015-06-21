@@ -81,7 +81,7 @@ public class LocationAdapter extends BaseAdapter {
 //                System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
 
         Date date = location.getSavedOn();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
         String timeUpdated = dateFormat.format(date);
 
         dateSaved.setText(timeUpdated);

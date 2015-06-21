@@ -20,9 +20,12 @@ import android.widget.ListView;
 
 import com.ghiyats.fish.temannelayan.Activity.AddLocation;
 import com.ghiyats.fish.temannelayan.Activity.DetailActivity;
+import com.ghiyats.fish.temannelayan.Activity.MapsView;
 import com.ghiyats.fish.temannelayan.Adapter.LocationAdapter;
 import com.ghiyats.fish.temannelayan.Helper.LocationDbHelper;
+import com.ghiyats.fish.temannelayan.Helper.RangerDbHelper;
 import com.ghiyats.fish.temannelayan.Helper.SessionManager;
+import com.ghiyats.fish.temannelayan.Model.RangerModel;
 import com.ghiyats.fish.temannelayan.Model.TurtleModel;
 import com.ghiyats.fish.temannelayan.R;
 
@@ -43,20 +46,23 @@ public class LocationFragment extends Fragment {
     SessionManager sessionManager;
     ListView locationList;
     LocationAdapter adapter;
+    RangerModel ranger;
+    RangerDbHelper rangerHelper;
 
 
     public LocationFragment() {
         // Required empty public constructor
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sessionManager = new SessionManager(getActivity());
         dbHelper = new LocationDbHelper(getActivity().getApplicationContext());
-//        clearDB();
+        rangerHelper = new RangerDbHelper(getActivity().getApplicationContext());
+        ranger = rangerHelper.get(sessionManager.getUserId());
+        Log.d("TAG",ranger.getRangerName()+ranger.getPhoneNumber()+ranger.getMemberOf());
+//        dbHelper.clear();
 //        initData();
         setHasOptionsMenu(true);
     }
@@ -70,7 +76,8 @@ public class LocationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_location, container, false);
 
         //dbHelper.clear();
-        locations = dbHelper.load();
+        Log.d("TAG",ranger.getMemberOf().toString());
+        locations = dbHelper.loadByKonservasi(ranger.getMemberOf().getID());
         locationList = (ListView) view.findViewById(R.id.locationList);
 
         adapter = new LocationAdapter(getActivity(),locations);
@@ -96,7 +103,7 @@ public class LocationFragment extends Fragment {
     public void onResume() {
         Log.d("LocationFragment", "resumed");
         //locations.clear();
-        locations = dbHelper.load();
+        locations = dbHelper.loadByKonservasi(ranger.getMemberOf().getID());
         adapter.notifyDataSetChanged();
         super.onResume();
     }
@@ -118,19 +125,16 @@ public class LocationFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.action_add:
                 startActivity(new Intent(this.getActivity(), AddLocation.class));
+                //getActivity().finish();
+                break;
+            case R.id.action_map:
+                startActivity(new Intent(this.getActivity(), MapsView.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    public void clearDB(){
-
-        Realm realm = Realm.getInstance(getActivity());
-        RealmResults<TurtleModel> query = realm.where(TurtleModel.class).findAll();
-        realm.beginTransaction();
-        query.clear();
-        realm.commitTransaction();
-    }
 
     public Date getCurentTime(){
         Calendar c = Calendar.getInstance();
@@ -153,12 +157,14 @@ public class LocationFragment extends Fragment {
 
     public void initData(){
         Log.d("masukin data", "dsfsafdasfasdfda");
-        dbHelper.init("Penyusuar pangandaran 1", "Penyu Hijau", 92, "-7.692016", "108.663652", getCurentTime(), sessionManager.getUsername(), "");
-        dbHelper.init("Penyusuar pangandaran 2", "Penyu Sisisk",100, "-7.730110", "108.670099", getCurentTime(), sessionManager.getUsername(),"");
-        dbHelper.init("Penyusuar Batu Hiu 1", "Penyu Belimbing",80, "-7.690449", "108.542076", getCurentTime(), sessionManager.getUsername(), "");
-        dbHelper.init("Penyusuar Batu Hiu utara", "Penyu Hijau",77, "-7.000973", "106.509930", getCurentTime(), sessionManager.getUsername(),"");
-        dbHelper.init("Penyusuar Pelabuhan Ratu", "Penyu Tempayan",93, "-6.981864", "106.540221", getCurentTime(), sessionManager.getUsername(),"");
-        dbHelper.init("Penyusuar Pangumbahan wetan", "Penyu Sisik",82, "-7.344612", "106.400885", getCurentTime(), sessionManager.getUsername(),"");
-        dbHelper.init("Penusuar Pangumbahan kidul", "Penyu Hijau",67, "-7.336865", "106.398546", getCurentTime(), sessionManager.getUsername(),"");
+        dbHelper.init("Penyusuar pangandaran 1", "Penyu Hijau", 92, "-7.692016", "108.663652", getCurentTime(), sessionManager.getUsername(), "",ranger.getMemberOf());
+        dbHelper.init("Penyusuar pangandaran 2", "Penyu Sisisk",100, "-7.730110", "108.670099", getCurentTime(), sessionManager.getUsername(),"",ranger.getMemberOf());
+        dbHelper.init("Penyusuar Batu Hiu 1", "Penyu Belimbing",80, "-7.690449", "108.542076", getCurentTime(), sessionManager.getUsername(), "",ranger.getMemberOf());
+        dbHelper.init("Penyusuar Batu Hiu utara", "Penyu Hijau",77, "-7.000973", "106.509930", getCurentTime(), sessionManager.getUsername(),"",ranger.getMemberOf());
+        dbHelper.init("Penyusuar Pelabuhan Ratu", "Penyu Tempayan",93, "-6.981864", "106.540221", getCurentTime(), sessionManager.getUsername(),"",ranger.getMemberOf());
+        dbHelper.init("Penyusuar Pangumbahan wetan", "Penyu Sisik",82, "-7.344612", "106.400885", getCurentTime(), sessionManager.getUsername(),"",ranger.getMemberOf());
+        dbHelper.init("Penusuar Pangumbahan kidul", "Penyu Hijau",67, "-7.336865", "106.398546", getCurentTime(), sessionManager.getUsername(),"",ranger.getMemberOf());
     }
+
+
 }

@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.ghiyats.fish.temannelayan.Activity.DetailKonservasi">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/thumbnailKonservasi"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/group_button_128"/>
+
+
+    <TextView
+        android:id="@+id/konservasiName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/thumbnailKonservasi"
+        android:text="NAMA KONSERVASI"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        />
+
+    <ImageView
+        android:id="@+id/place_icon"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/konservasiName"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/thumbnailKonservasi"
+        android:src="@drawable/ic_place_grey600_48dp"/>
+
+    <TextView
+        android:id="@+id/alamatText"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:layout_toRightOf="@id/place_icon"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/konservasiName"
+        android:text="Jl. Tukad Wisata No. 4, Kelurahan Serangan, Denpasar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/phone_icon"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/alamatText"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/thumbnailKonservasi"
+        android:src="@drawable/ic_local_phone_grey600_36dp"/>
+
+    <TextView
+        android:id="@+id/phoneText"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:layout_toRightOf="@id/place_icon"
+        android:layout_marginTop="10dp"
+        android:layout_alignBottom="@id/phone_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/alamatText"
+        android:text="08787311293"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/jmlRangerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneText"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:layout_marginTop="25dp"
+        android:text="Jumlah Ranger" />
+
+    <TextView
+        android:id="@+id/jmlTurtleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneText"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:text="Penyusuar Aktif" />
+
+    <TextView
+        android:id="@+id/jmlRanger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jmlRangerTitle"
+        android:textColor="@color/actionbar_color_darker"
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:layout_marginTop="5dp"
+        android:text="9 Ranger" />
+
+    <TextView
+        android:id="@+id/jmlTurtle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jmlTurtleTitle"
+        android:textColor="@color/actionbar_color_darker"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:layout_alignParentRight="true"
+        android:text="13 lokasi" />
+
+    <TextView
+        android:id="@+id/deskripsiTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/jmlRanger"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:layout_marginTop="25dp"
+        android:text="Deskripsi :" />
+
+    <TextView
+        android:id="@+id/deskripsiText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deskripsiTitle"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:layout_marginTop="5dp"
+        android:text="TCEC merupakan wahana konservasi yang diprakarsai oleh sejumlah tokoh pelestarian lingkungan di Bali, WWF, dan Pemerintah Provinsi Bali. Pilot project tempat ini dimulai pada tahun 1982, atas prakarsa antara lain Menteri Riset dan Teknologi ketika itu, B.J. Habibie." />
+
+    <TextView
+        android:id="@+id/listRangerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deskripsiText"
+        android:textColor="@color/secondary_text_default_material_light"
+        android:layout_marginTop="25dp"
+        android:text="Daftar Ranger" />
+
+    <FrameLayout
+        android:id="@+id/rangerLvContainer"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/listRangerTitle"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+</RelativeLayout>

@@ -16,7 +16,7 @@
             android:layout_marginTop="10dp"
             android:text="ACCOUNT SETTING"
             android:textAllCaps="true"
-            android:textColor="@color/secondary_text_default_material_dark"
+            android:textColor="@color/primary_text_default_material_light"
             android:textSize="25dp" />
 
         <LinearLayout
@@ -25,7 +25,8 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/accThumbnail"
                 android:layout_width="100sp"
                 android:layout_height="100sp"
                 android:src="@drawable/account_placeholder" />
@@ -39,8 +40,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Account name"
-                    android:textColor="@color/secondary_text_default_material_dark"
+                    android:text="Nama Ranger"
+                    android:textColor="@color/secondary_text_default_material_light"
                     android:textStyle="bold" />
 
                 <TextView
@@ -55,8 +56,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Account ID"
-                    android:textColor="@color/secondary_text_default_material_dark"
+                    android:text="ID Ranger"
+                    android:textColor="@color/secondary_text_default_material_light"
                     android:textStyle="bold" />
 
                 <TextView
@@ -78,7 +79,7 @@
             android:layout_marginTop="20dp"
             android:text="Change password"
             android:textAllCaps="true"
-            android:textColor="@color/secondary_text_default_material_dark"
+            android:textColor="@color/secondary_text_default_material_light"
             android:textSize="15dp" />
 
         <TextView
@@ -88,7 +89,7 @@
             android:layout_marginLeft="20dp"
             android:paddingTop="20dp"
             android:text="Old password"
-            android:textColor="@color/secondary_text_default_material_dark"
+            android:textColor="@color/secondary_text_default_material_light"
             android:textStyle="bold|italic" />
 
         <EditText
@@ -97,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="@string/hint_password"
+            android:textColorHint="@color/secondary_text_disabled_material_light"
             android:inputType="textPassword"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
@@ -109,7 +111,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:text="New password"
-            android:textColor="@color/secondary_text_default_material_dark"
+            android:textColor="@color/secondary_text_default_material_light"
             android:textStyle="bold|italic" />
 
         <EditText
@@ -117,6 +119,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:textColorHint="@color/secondary_text_disabled_material_light"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
@@ -130,13 +133,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
             android:text="Confirm new password"
-            android:textColor="@color/secondary_text_default_material_dark"
+            android:textColor="@color/secondary_text_default_material_light"
             android:textStyle="bold|italic" />
 
         <EditText
             android:id="@+id/newPassConfirm"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/secondary_text_disabled_material_light"
             android:layout_margin="10dp"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
@@ -144,21 +148,15 @@
             android:paddingRight="10dp"
             android:singleLine="true" />
 
-        <com.andexert.library.RippleView
-            rv_rippleDuration="250"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
 
             <Button
                 android:id="@+id/btnChangePass"
+                android:layout_margin="20dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@color/actionbar_color"
                 android:layout_centerHorizontal="true"
                 android:text="Change Password  " />
-        </com.andexert.library.RippleView>
-
     </LinearLayout>
 </ScrollView>

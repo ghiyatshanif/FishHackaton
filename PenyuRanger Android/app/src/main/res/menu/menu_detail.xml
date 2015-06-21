@@ -2,6 +2,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.ghiyats.fish.temannelayan.Home">
+    <item android:id="@+id/action_stat"
+        android:title="@string/action_stat"
+        android:icon="@drawable/ic_trending_up_white_48dp"
+        app:showAsAction="ifRoom"/>
     <item android:id="@+id/action_edit"
         android:title="@string/action_edit"
         android:icon="@drawable/ic_mode_edit_white_48dp"

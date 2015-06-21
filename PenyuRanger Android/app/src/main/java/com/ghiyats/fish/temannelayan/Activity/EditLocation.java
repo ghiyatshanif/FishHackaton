@@ -20,6 +20,7 @@ import com.ghiyats.fish.temannelayan.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import io.realm.Realm;
 
 public class EditLocation extends ActionBarActivity {
 
@@ -44,7 +45,7 @@ public class EditLocation extends ActionBarActivity {
 
         intent = getIntent();
         String id =intent.getStringExtra("ID");
-        Log.d("EditLocation",id);
+//        Log.d("EditLocation",id);
 
         sessionManager = new SessionManager(this);
         dbHelper = new LocationDbHelper(this);
@@ -74,13 +75,19 @@ public class EditLocation extends ActionBarActivity {
     }
 
     public void editLocation(View view){
-        TurtleModel editTurtle = new TurtleModel();
-        editTurtle.setDropboxLink(dropboxLink.getText().toString());
-        editTurtle.setJmlTelur(Integer.parseInt(jmlTelur.getText().toString()));
-        editTurtle.setTurtleCategory(penyuChooser.getSelectedItem().toString());
-        editTurtle.setName(namaLokasi.getText().toString());
+        Realm realm = Realm.getInstance(this);
 
-        dbHelper.edit(turtle.getID(), editTurtle);
+        realm.beginTransaction();
+
+        turtle.setDropboxLink(dropboxLink.getText().toString());
+        turtle.setJmlTelur(Integer.parseInt(jmlTelur.getText().toString()));
+        turtle.setTurtleCategory(penyuChooser.getSelectedItem().toString());
+        turtle.setName(namaLokasi.getText().toString());
+
+        realm.commitTransaction();
+
+        Log.d("edited",turtle.getKonservasiInCharge().getNamaKonservasi());
+        //dbHelper.edit(turtle.getID(), edit);
         Toast.makeText(this, "Location Edited",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("ID",turtle.getID());
@@ -91,7 +98,7 @@ public class EditLocation extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_location, menu);
+        getMenuInflater().inflate(R.menu.empty_menu, menu);
         return true;
     }
 

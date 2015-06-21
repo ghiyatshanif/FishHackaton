@@ -1,7 +1,6 @@
 package com.ghiyats.fish.temannelayan.Helper;
 
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -30,9 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by Ghiyats on 5/27/2015.
- */
+
 public class GPSManager implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
     private Context mContext;
 
@@ -44,11 +41,10 @@ public class GPSManager implements GoogleApiClient.ConnectionCallbacks, GoogleAp
 
     private boolean isNetworkEnabled= false;
     private boolean isBestProviderAvail=false;
-    private boolean isRequestingUpdates =false;
 
 
-    private static int UPDATE_INTERVAL = 10000; //10 seconds
-    private static int FASTEST__INTERVAL = 2000; //seconds
+    private static int UPDATE_INTERVAL = 5000; //5 seconds
+    private static int FASTEST__INTERVAL = 1000; //1seconds
     private static int DISPLACEMENT = 10;
     //location object to save location
     Location mLastLocation;
@@ -56,8 +52,6 @@ public class GPSManager implements GoogleApiClient.ConnectionCallbacks, GoogleAp
 
     //Google API Client to interact with Google Play Service
     GoogleApiClient mGoogleApiClient;
-
-    AppCompatDialog dialog;
 
     LocationManager mLocationManager;
 
@@ -109,14 +103,14 @@ public class GPSManager implements GoogleApiClient.ConnectionCallbacks, GoogleAp
     public GPSManager(Context mContext) {
         this.mContext = mContext;
         if (isPlayserviceAvail()){
-            buildGoogleApiClient();
+            //buildGoogleApiClient();
             checkProviderAvail();
-            mGoogleApiClient.connect();
+            //mGoogleApiClient.connect();
         }
     }
 
 
-    protected synchronized void buildGoogleApiClient(){
+    public synchronized void buildGoogleApiClient(){
         mGoogleApiClient = new GoogleApiClient.Builder(mContext)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -148,8 +142,8 @@ public class GPSManager implements GoogleApiClient.ConnectionCallbacks, GoogleAp
             mGoogleApiClient.connect();
         LocationRequest newLocationRequest;
         newLocationRequest = new LocationRequest();
-        newLocationRequest.setInterval(5000)
-                .setFastestInterval(1000)
+        newLocationRequest.setInterval(UPDATE_INTERVAL)
+                .setFastestInterval(FASTEST__INTERVAL)
                 .setSmallestDisplacement(DISPLACEMENT)
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 

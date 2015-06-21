@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ghiyats.fish.temannelayan">
+    package="com.ghiyats.fish.temannelayan" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
 
     <application
         android:name=".App.AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/penyu_logo_blue_192"
         android:label="@string/app_name"
-        android:theme="@style/MyNavigationDrawerTheme">
+        android:theme="@style/MyNavigationDrawerTheme" >
         <activity
             android:name=".Activity.NavigationDrawer"
             android:label="@string/app_name"
-            android:theme="@style/MyNavigationDrawerTheme"></activity>
+            android:theme="@style/MyNavigationDrawerTheme" />
         <activity
             android:name=".Activity.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,34 +33,71 @@
         <activity
             android:name=".Activity.AddLocation"
             android:label="@string/title_activity_add_location"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".Activity.NavigationDrawer">
+            android:parentActivityName=".Activity.NavigationDrawer"
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.NavigationDrawer">
+                android:value=".Activity.NavigationDrawer" >
             </meta-data>
         </activity>
-
         <activity
             android:name=".Activity.EditLocation"
             android:label="@string/title_activity_edit_location"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".Activity.DetailActivity">
+            android:parentActivityName=".Activity.DetailActivity"
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.DetailActivity">
+                android:value=".Activity.DetailActivity" >
             </meta-data>
-
         </activity>
         <activity
             android:name=".Activity.DetailActivity"
             android:label="@string/title_activity_detail"
+            android:parentActivityName=".Activity.NavigationDrawer"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.NavigationDrawer" >
+            </meta-data>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Activity.MapsView"
+            android:label="@string/title_activity_maps_view"
+            android:parentActivityName=".Activity.NavigationDrawer"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.NavigationDrawer" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name=".Activity.ChartActivity"
+            android:label="@string/title_activity_chart"
+            android:parentActivityName=".Activity.DetailActivity"
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.DetailActivity" >
+            </meta-data>
+        </activity>
+        <activity
+            android:name=".Activity.DetailKonservasi"
+            android:label="@string/title_activity_detail_konservasi"
             android:theme="@style/AppTheme"
             android:parentActivityName=".Activity.NavigationDrawer">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activity.NavigationDrawer">
+                android:value=".Activity.NavigationDrawer" >
             </meta-data>
+
         </activity>
     </application>
 

@@ -1,30 +1,35 @@
 <resources>
-    <string name="app_name">Teman Nelayan</string>
+    <string name="app_name">Penyu Ranger</string>
 
     <!--drawer title-->
 
     <string name="menu_beranda">Beranda</string>
     <string name="menu_daftar_lokasi">Lokasi Penyusuar</string>
-    <string name="menu_infografis">Infografis</string>
-    <string name="menu_akun">Akun</string>
-    <string name="menu_cuaca">Info cuaca</string>
+    <string name="menu_rangers">Rangers</string>
+    <string name="menu_akun">Setelan Akun</string>
+    <string name="menu_konservasi">Konservasi</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_add">Tambah Lokasi</string>
     <string name="action_refresh">Refresh</string>
+    <string name="action_stat">Statistik</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Hapus</string>
+    <string name="action_map">Buka tampilan peta</string>
 
     <string name="hint_id">Ranger id</string>
     <string name="hint_password">Password</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
-    <string name="fishackaton">&gt;&lt;&gt;</string>
+    <string name="fishackaton">#codeforfish &gt;&lt;&gt;</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_location">Tambah Lokasi Penyusuar</string>
-    <string name="title_activity_edit_location">EditLocation</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_edit_location">Edit</string>
+    <string name="title_activity_detail">Detail</string>
+    <string name="title_activity_maps_view">Peta</string>
+    <string name="title_activity_chart">Data Ancaman</string>
+    <string name="title_activity_detail_konservasi">DetailKonservasi</string>
 </resources>

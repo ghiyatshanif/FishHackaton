@@ -27,6 +27,10 @@
     <color name="actionbar_color_lighter">#bbdefb</color>
     <color name="actionbar_color_darker">#1976d2</color>
 
+    <color name="feed_bg">#d3d6db</color>
+    <color name="feed_item_bg">#ffffff</color>
+    <color name="feed_item_border">#c2c3c8</color>
+
     <color name="rank1">#f44</color>
     <color name="rank2">#9c27b0</color>
     <color name="rank3">#ff9800</color>

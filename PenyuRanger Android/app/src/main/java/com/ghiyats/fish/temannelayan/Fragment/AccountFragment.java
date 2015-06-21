@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -20,7 +21,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.ghiyats.fish.temannelayan.App.AppController;
+import com.ghiyats.fish.temannelayan.Helper.RangerDbHelper;
 import com.ghiyats.fish.temannelayan.Helper.SessionManager;
 import com.ghiyats.fish.temannelayan.R;
 
@@ -30,6 +33,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
@@ -46,8 +50,10 @@ public class AccountFragment extends Fragment {
     EditText newPass;
     EditText newPassConfirm;
     Button btnChangePass;
+    ImageView thumbnail;
 
     SessionManager sessionManager;
+    RangerDbHelper rangerHelper;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -65,6 +71,8 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+
+        thumbnail =(CircleImageView) view.findViewById(R.id.accThumbnail);
         accountName = (TextView) view.findViewById(R.id.account_name);
         accountID = (TextView) view.findViewById(R.id.account_id);
         oldPass = (EditText) view.findViewById(R.id.oldPass);
@@ -73,10 +81,18 @@ public class AccountFragment extends Fragment {
         btnChangePass = (Button) view.findViewById(R.id.btnChangePass);
 
         sessionManager = new SessionManager(getActivity());
+        rangerHelper = new RangerDbHelper(getActivity());
         Log.d(TAG, sessionManager.getUserId() + sessionManager.getUsername());
 
         accountName.setText(sessionManager.getUsername());
         accountID.setText(sessionManager.getUserId());
+
+        Glide.with(getActivity())
+                .load(rangerHelper.get(sessionManager.getUserId()).getThumbnail())
+                .centerCrop()
+                .override(100,100)
+                .placeholder(R.drawable.account_placeholder)
+                .into(thumbnail);
 
         btnChangePass.setOnClickListener(new View.OnClickListener() {
             @Override

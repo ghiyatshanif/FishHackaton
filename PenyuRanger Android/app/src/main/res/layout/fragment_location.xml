@@ -3,7 +3,6 @@
     android:layout_height="match_parent"
     tools:context="com.ghiyats.fish.temannelayan.Fragment.Location">
 
-    <!-- TODO: Update blank fragment layout -->
     <ListView
         android:layout_margin="0dp"
         android:id="@+id/locationList"

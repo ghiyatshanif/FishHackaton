@@ -26,6 +26,7 @@ public class SessionManager {
     private static final String KEY_USER_ID = "userID";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_MEMBER = "memberOf";
 
     public SessionManager(Context context) {
 
@@ -50,10 +51,13 @@ public class SessionManager {
     }
 
     public String getUsername() {
-        return preferences.getString(KEY_USERNAME,"");
+        return preferences.getString(KEY_USERNAME, "");
     }
     public String getPassword() {
         return preferences.getString(KEY_PASSWORD,"");
+    }
+    public String getMemberOf(){
+        return  preferences.getString(KEY_MEMBER,"");
     }
 
     public void setUserId(String id) {
@@ -68,6 +72,11 @@ public class SessionManager {
 
     public void setPassword(String pass) {
         editor.putString(KEY_PASSWORD,pass);
+        editor.commit();
+    }
+
+    public void setMemberOf(String memberOf){
+        editor.putString(KEY_MEMBER,memberOf);
         editor.commit();
     }
 

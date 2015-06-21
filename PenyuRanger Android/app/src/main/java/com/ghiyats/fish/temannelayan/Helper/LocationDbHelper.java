@@ -3,6 +3,7 @@ package com.ghiyats.fish.temannelayan.Helper;
 import android.content.Context;
 import android.util.Log;
 
+import com.ghiyats.fish.temannelayan.Model.KonservasiModel;
 import com.ghiyats.fish.temannelayan.Model.TurtleModel;
 
 import java.util.ArrayList;
@@ -14,15 +15,15 @@ import java.util.UUID;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-/**
- * Created by Ghiyats on 6/7/2015.
- */
+
 public class LocationDbHelper {
 
     private Context context;
+    private KonservasiDbHelper konservasiHelper;
 
     public LocationDbHelper(Context context) {
         this.context = context;
+        konservasiHelper = new KonservasiDbHelper(context);
     }
 
     public ArrayList<TurtleModel> load(){
@@ -37,7 +38,19 @@ public class LocationDbHelper {
         return locations;
     }
 
-    public void init( String name, String turtleCategory,int jmlTelur, String latitude, String longitude, Date savedOn, String createdBy,String dropboxLink){
+    public ArrayList<TurtleModel> loadByKonservasi(String ID){
+        ArrayList<TurtleModel> locations = new ArrayList<TurtleModel>();
+        Realm realm = Realm.getInstance(context);
+
+        RealmResults<TurtleModel> query = realm.where(TurtleModel.class).equalTo("konservasiInCharge.ID",ID).findAll();
+
+        for (TurtleModel lm : query){
+            locations.add(lm);
+        }
+        return locations;
+    }
+
+    public void init( String name, String turtleCategory,int jmlTelur, String latitude, String longitude, Date savedOn, String createdBy,String dropboxLink, KonservasiModel konservasi){
 
         Realm realm = Realm.getInstance(context);
         //beginning realm transaction
@@ -54,30 +67,33 @@ public class LocationDbHelper {
         lm.setSavedOn(savedOn);
         lm.setDropboxLink(dropboxLink);
         lm.setRandomNum(new Random().nextInt(6));
-
+        lm.setKonservasiInCharge(konservasi);
 
         realm.commitTransaction();
+        konservasiHelper.addTurtles(konservasi.getID(),lm);
         Log.d("Realm init","added");
     }
 
-    public void add(String name, String turtleCategory,int jmlTelur, String latitude, String longitude, Date savedOn, String createdBy,String dropboxLink){
+    public void add(TurtleModel turtle){
         Realm realm = Realm.getInstance(context);
         //beginning realm transaction
         realm.beginTransaction();
 
         TurtleModel lm = realm.createObject(TurtleModel.class);
-        lm.setName(name);
+        lm.setName(turtle.getName());
         lm.setID(UUID.randomUUID().toString());
-        lm.setTurtleCategory(turtleCategory);
-        lm.setJmlTelur(jmlTelur);
-        lm.setLatitude(latitude);
-        lm.setLongitude(longitude);
-        lm.setSavedBy(createdBy);
-        lm.setSavedOn(savedOn);
-        lm.setDropboxLink(dropboxLink);
+        lm.setTurtleCategory(turtle.getTurtleCategory());
+        lm.setJmlTelur(turtle.getJmlTelur());
+        lm.setLatitude(turtle.getLatitude());
+        lm.setLongitude(turtle.getLongitude());
+        lm.setSavedBy(turtle.getSavedBy());
+        lm.setSavedOn(turtle.getSavedOn());
+        lm.setDropboxLink(turtle.getDropboxLink());
         lm.setRandomNum(new Random().nextInt(6));
+        lm.setKonservasiInCharge(turtle.getKonservasiInCharge());
 
         realm.commitTransaction();
+        konservasiHelper.addTurtles(lm.getKonservasiInCharge().getID(),lm);
     }
 
     public void edit(String ID,TurtleModel turtle){
@@ -94,6 +110,7 @@ public class LocationDbHelper {
         lm.setJmlTelur(turtle.getJmlTelur());
         lm.setSavedOn(getCurentTime());
         lm.setDropboxLink(turtle.getDropboxLink());
+        lm.setKonservasiInCharge(turtle.getKonservasiInCharge());
 
         realm.commitTransaction();
     }
@@ -104,6 +121,7 @@ public class LocationDbHelper {
         TurtleModel lm = realm.where(TurtleModel.class)
                 .equalTo("ID",ID).findFirst();
 
+        konservasiHelper.removeTurtles(lm.getKonservasiInCharge().getID(),lm);
         realm.beginTransaction();
         lm.removeFromRealm();
         realm.commitTransaction();

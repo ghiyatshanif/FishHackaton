@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <!-- Thumbnail Image-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/thumbnailKonservasi"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="25dp"
+        android:layout_centerVertical="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/group_button_128" />
+
+    <!-- ranger name-->
+    <TextView
+        android:id="@+id/konservasiName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/thumbnailKonservasi"
+        android:layout_toRightOf="@id/thumbnailKonservasi"
+        android:layout_marginTop="7dp"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:text="Ranger Name"
+        android:textStyle="bold" />
+
+    <!-- member of -->
+    <TextView
+        android:id="@+id/alamat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/konservasiName"
+        android:layout_marginTop="3dp"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:layout_toRightOf="@id/thumbnailKonservasi"
+        android:text="Jl. Tukad Wisata No. 4, Kelurahan Serangan, Denpasar"
+        android:textColor="@color/abc_secondary_text_material_light" />
+
+</RelativeLayout>

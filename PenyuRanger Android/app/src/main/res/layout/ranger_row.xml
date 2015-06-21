@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <!-- Thumbnail Image-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/thumbnail"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="25dp"
+        android:layout_centerVertical="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_place_white_48dp" />
+
+    <!-- ranger name-->
+    <TextView
+        android:id="@+id/rangerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/thumbnail"
+        android:layout_toRightOf="@id/thumbnail"
+        android:layout_marginTop="7dp"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:text="Ranger Name"
+        android:textStyle="bold" />
+
+    <!-- member of -->
+    <TextView
+        android:id="@+id/memberOf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rangerName"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@id/thumbnail"
+        android:text="Masyarakat dan Perikanan Indonesia"
+        android:textColor="@color/abc_secondary_text_material_light" />
+
+</RelativeLayout>
